@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JVParallax" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PA9-FH-SLJ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iUx-ea-aeW" customClass="JVParallaxView" customModule="JVParallax" customModuleProvider="target">
+                                        <rect key="frame" x="1024" y="0.0" width="1024" height="768"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="geek" translatesAutoresizingMaskIntoConstraints="NO" id="rt7-6M-jHl">
+                                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="rt7-6M-jHl" firstAttribute="leading" secondItem="iUx-ea-aeW" secondAttribute="leading" placeholder="YES" id="Otw-cx-t0d"/>
+                                            <constraint firstItem="rt7-6M-jHl" firstAttribute="top" secondItem="iUx-ea-aeW" secondAttribute="top" placeholder="YES" id="YeW-aR-T40"/>
+                                            <constraint firstAttribute="bottom" secondItem="rt7-6M-jHl" secondAttribute="bottom" placeholder="YES" id="gsB-Pc-VSr"/>
+                                            <constraint firstAttribute="trailing" secondItem="rt7-6M-jHl" secondAttribute="trailing" placeholder="YES" id="n6x-sX-2ZB"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxParallax">
+                                                <real key="value" value="0.25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="viewToParallax" destination="rt7-6M-jHl" id="Dgh-ce-dmJ"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="iUx-ea-aeW" firstAttribute="leading" secondItem="PA9-FH-SLJ" secondAttribute="leading" constant="1024" id="HaO-Bh-bpK"/>
+                                    <constraint firstAttribute="trailing" secondItem="iUx-ea-aeW" secondAttribute="trailing" id="Z51-su-ime"/>
+                                    <constraint firstAttribute="bottom" secondItem="iUx-ea-aeW" secondAttribute="bottom" id="krL-s8-mtz"/>
+                                    <constraint firstItem="iUx-ea-aeW" firstAttribute="top" secondItem="PA9-FH-SLJ" secondAttribute="top" id="pJI-vA-mN4"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="0Hc-FD-xgB"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PA9-FH-SLJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8fk-Kg-kV1"/>
+                            <constraint firstAttribute="top" secondItem="PA9-FH-SLJ" secondAttribute="top" id="PJ1-pn-vZ2"/>
+                            <constraint firstAttribute="bottom" secondItem="PA9-FH-SLJ" secondAttribute="bottom" id="VKr-mZ-0p7"/>
+                            <constraint firstAttribute="trailing" secondItem="PA9-FH-SLJ" secondAttribute="trailing" id="o6G-V0-iLh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="parallaxBehavior" destination="TqL-Yk-gKg" id="ntv-Gv-ble"/>
+                        <outlet property="parallaxView" destination="iUx-ea-aeW" id="mxY-sG-Y8O"/>
+                        <outlet property="parallaxViewLeading" destination="HaO-Bh-bpK" id="fHY-hI-LOh"/>
+                        <outlet property="scrollView" destination="PA9-FH-SLJ" id="wpl-7T-1OQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="TqL-Yk-gKg" customClass="JVScrollViewParallaxBehavior" customModule="JVParallax" customModuleProvider="target">
+                    <connections>
+                        <outlet property="scrollView" destination="PA9-FH-SLJ" id="WPO-OX-0y3"/>
+                        <outletCollection property="parallaxViews" destination="iUx-ea-aeW" collectionClass="NSMutableArray" id="DZB-KU-hui"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="330" y="307"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="geek" width="1024" height="768"/>
+    </resources>
+</document>
