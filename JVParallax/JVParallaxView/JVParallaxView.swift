@@ -9,14 +9,14 @@
 import UIKit
 
 @IBDesignable class JVParallaxView: UIView {
-
+    
     //MARK: - Interface builder vars
     @IBOutlet var viewToParallax: UIView? {
         didSet {
             self.updateForView()
         }
     }
-
+    
     /** This value is to determine a ratio at which the viewToParallax is out of bounds of this view.
      The value is from 0 to 1 and represent a percentage of this view width|height */
     @IBInspectable var maxParallax: CGFloat = 0.25 {
@@ -25,7 +25,7 @@ import UIKit
         }
     }
     
-    /** This is the value in pourcentage of the advancement of the parallax. 
+    /** This is the value in pourcentage of the advancement of the parallax.
      Value between 0 to 1. 0 means the viewToParallax will be to the left|top of this view, a value of 0.5 means it is centered in this view and a value of 1 means it will be to the right|bottom of this view. */
     @IBInspectable var value: CGFloat = 0.0 {
         didSet {
@@ -33,7 +33,12 @@ import UIKit
         }
     }
     
-    @IBInspectable var isHorizontal: Bool = true
+    @IBInspectable var isHorizontal: Bool = true {
+        didSet {
+            self.updateStartPoint()
+            self.updateValue()
+        }
+    }
     
     //MARK: - Private vars
     private var centerXConstraint: NSLayoutConstraint!
@@ -54,7 +59,7 @@ import UIKit
         super.init(frame: frame)
         self.initialize()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.initialize()
@@ -69,6 +74,8 @@ import UIKit
     private func updateForView() {
         guard let viewToParallax = self.viewToParallax else { return }
         
+        viewToParallax.removeFromSuperview()
+        
         let width = NSLayoutConstraint(item: viewToParallax, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1, constant: 0)
         let height = NSLayoutConstraint(item: viewToParallax, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 1, constant: 0)
         self.centerXConstraint = NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: viewToParallax, attribute: .CenterX, multiplier: 1, constant: 0)
@@ -78,6 +85,7 @@ import UIKit
         self.addSubview(viewToParallax)
         
         NSLayoutConstraint.activateConstraints([width, height, self.centerXConstraint, self.centerYConstraint])
+        self.layoutIfNeeded()
         
         self.updateStartPoint()
     }
