@@ -14,6 +14,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var parallaxView: JVParallaxView!
     @IBOutlet weak var parallaxViewLeading: NSLayoutConstraint!
+    @IBOutlet weak var parallaxViewTrailing: NSLayoutConstraint!
 
     @IBOutlet var parallaxBehavior: JVScrollViewParallaxBehavior!
     
@@ -25,8 +26,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.scrollView.backgroundColor = UIColor.redColor()
-        self.scrollView.contentSize = CGSize(width: self.view.frame.width*10, height: self.view.frame.height)
-        self.parallaxViewLeading.constant = 1024
+        
+        self.parallaxViewLeading.constant = self.view.frame.width-20
+        self.parallaxViewTrailing.constant = self.view.frame.width-20
     }
 
     override func didReceiveMemoryWarning() {
