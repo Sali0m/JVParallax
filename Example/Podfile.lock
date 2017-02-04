@@ -1,0 +1,16 @@
+PODS:
+  - JVParallax (0.1.0)
+
+DEPENDENCIES:
+  - JVParallax (from `../`)
+
+EXTERNAL SOURCES:
+  JVParallax:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JVParallax: 15b3dad88e45e139c2e76fa7f73ae2d4a403ff30
+
+PODFILE CHECKSUM: 586681bbf50d06bd13cd783d6bad101ec9066f2c
+
+COCOAPODS: 1.1.1

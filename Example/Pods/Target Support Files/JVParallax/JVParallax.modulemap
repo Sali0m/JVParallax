@@ -1,0 +1,6 @@
+framework module JVParallax {
+  umbrella header "JVParallax-umbrella.h"
+
+  export *
+  module * { export * }
+}

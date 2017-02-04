@@ -1,0 +1,22 @@
+{
+  "name": "JVParallax",
+  "version": "0.1.0",
+  "summary": "A short description of JVParallax.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Sali0m/JVParallax",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Sali0m": "jehan.vossen@tapptic.com"
+  },
+  "source": {
+    "git": "https://github.com/Sali0m/JVParallax.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "JVParallax/Classes/**/*"
+}

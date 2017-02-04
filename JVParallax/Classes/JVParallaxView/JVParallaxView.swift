@@ -8,10 +8,10 @@
 
 import UIKit
 
-@IBDesignable class JVParallaxView: UIView {
+@IBDesignable public class JVParallaxView: UIView {
     
     //MARK: - Interface builder vars
-    @IBOutlet var viewToParallax: UIView? {
+    @IBOutlet public var viewToParallax: UIView? {
         didSet {
             self.updateForView()
         }
@@ -19,7 +19,7 @@ import UIKit
     
     /** This value is to determine a ratio at which the viewToParallax is out of bounds of this view.
      The value is from 0 to 1 and represent a percentage of this view width|height */
-    @IBInspectable var maxParallax: CGFloat = 0.25 {
+    @IBInspectable public var maxParallax: CGFloat = 0.25 {
         didSet {
             self.updateStartPoint()
         }
@@ -27,13 +27,13 @@ import UIKit
     
     /** This is the value in pourcentage of the advancement of the parallax.
      Value between 0 to 1. 0 means the viewToParallax will be to the left|top of this view, a value of 0.5 means it is centered in this view and a value of 1 means it will be to the right|bottom of this view. */
-    @IBInspectable var value: CGFloat = 0.0 {
+    @IBInspectable public var value: CGFloat = 0.0 {
         didSet {
             self.updateValue()
         }
     }
     
-    @IBInspectable var isHorizontal: Bool = true {
+    @IBInspectable public var isHorizontal: Bool = true {
         didSet {
             self.updateStartPoint()
             self.updateValue()
@@ -41,56 +41,56 @@ import UIKit
     }
     
     //MARK: - Private vars
-    private var centerXConstraint: NSLayoutConstraint!
-    private var centerYConstraint: NSLayoutConstraint!
-    private var startPoint: CGFloat! {
+    fileprivate var centerXConstraint: NSLayoutConstraint!
+    fileprivate var centerYConstraint: NSLayoutConstraint!
+    fileprivate var startPoint: CGFloat! {
         didSet {
             self.updateValue()
         }
     }
     
     //MARK: - life cycle
-    func initialize() {
+    private func initialize() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.clipsToBounds = true
     }
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         self.initialize()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.initialize()
     }
     
-    init() {
-        super.init(frame: CGRectZero)
+    public init() {
+        super.init(frame: CGRect.zero)
         self.initialize()
     }
     
     //MARK: - Pivate func
-    private func updateForView() {
+    fileprivate func updateForView() {
         guard let viewToParallax = self.viewToParallax else { return }
         
         viewToParallax.removeFromSuperview()
         
-        let width = NSLayoutConstraint(item: viewToParallax, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1, constant: 0)
-        let height = NSLayoutConstraint(item: viewToParallax, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 1, constant: 0)
-        self.centerXConstraint = NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: viewToParallax, attribute: .CenterX, multiplier: 1, constant: 0)
-        self.centerYConstraint = NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: viewToParallax, attribute: .CenterY, multiplier: 1, constant: 0)
+        let width = NSLayoutConstraint(item: viewToParallax, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: 0)
+        let height = NSLayoutConstraint(item: viewToParallax, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 1, constant: 0)
+        self.centerXConstraint = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: viewToParallax, attribute: .centerX, multiplier: 1, constant: 0)
+        self.centerYConstraint = NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: viewToParallax, attribute: .centerY, multiplier: 1, constant: 0)
         
         viewToParallax.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(viewToParallax)
         
-        NSLayoutConstraint.activateConstraints([width, height, self.centerXConstraint, self.centerYConstraint])
+        NSLayoutConstraint.activate([width, height, self.centerXConstraint, self.centerYConstraint])
         self.layoutIfNeeded()
         
         self.updateStartPoint()
     }
     
-    private func updateStartPoint() {
+    fileprivate func updateStartPoint() {
         
         if self.isHorizontal {
             self.startPoint = self.frame.width * self.maxParallax
@@ -99,7 +99,7 @@ import UIKit
         }
     }
     
-    private func updateValue() {
+    fileprivate func updateValue() {
         guard let startPoint = self.startPoint else { return }
         let newConstant = (startPoint) - ((self.value*2) * startPoint)
         

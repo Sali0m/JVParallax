@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'JVParallax_Example' do
+  pod 'JVParallax', :path => '../'
+
+  target 'JVParallax_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

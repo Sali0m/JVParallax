@@ -1,13 +1,43 @@
 # JVParallax
-![example](http://www.saliom.be/githubImg/JVParallax.gif)
 
-JVParallax is a simple way of parallaxing any type of View.
+[![CI Status](http://img.shields.io/travis/Sali0m/JVParallax.svg?style=flat)](https://travis-ci.org/Sali0m/JVParallax)
+[![Version](https://img.shields.io/cocoapods/v/JVParallax.svg?style=flat)](http://cocoapods.org/pods/JVParallax)
+[![License](https://img.shields.io/cocoapods/l/JVParallax.svg?style=flat)](http://cocoapods.org/pods/JVParallax)
+[![Platform](https://img.shields.io/cocoapods/p/JVParallax.svg?style=flat)](http://cocoapods.org/pods/JVParallax)
+
+## Example
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Requirements
 
 ## Installation
 
-`CocoaPods` will be coming soon
+### CocoaPods
 
-For now import the file JVParallaxView.swift in your project. And for easier use import also the JVScrollViewParallaxBehavior.swift
+JVParallax is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "JVParallax"
+```
+
+### Manually
+
+Import the file JVParallaxView.swift in your project. And for easier use import also the JVScrollViewParallaxBehavior.swift.
+
+## Author
+
+Sali0m, jehan.vossen@gmail.com
+
+## License
+
+JVParallax is available under the MIT license. See the LICENSE file for more info.
+
+# JVParallax
+![example](http://www.saliom.be/githubImg/JVParallax.gif)
+
+JVParallax is a simple way of parallaxing any type of View.
 
 ## Usage
 
@@ -33,7 +63,7 @@ You can set the Behavior as the delegate of your scrollView if you don't need th
 
 ```    
 func scrollViewDidScroll(scrollView: UIScrollView) {
-  self.parallaxBehavior.scrollViewDidScroll(scrollView)
+self.parallaxBehavior.scrollViewDidScroll(scrollView)
 }
 ```
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JVParallax
 
 class ViewController: UIViewController, UIScrollViewDelegate {
 
@@ -23,9 +24,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.scrollView.backgroundColor = UIColor.redColor()
+        self.scrollView.backgroundColor = UIColor.red
         
         self.parallaxViewLeading.constant = self.view.frame.width-20
         self.parallaxViewTrailing.constant = self.view.frame.width-20
@@ -36,7 +37,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.parallaxBehavior.scrollViewDidScroll(scrollView)
     }
 }

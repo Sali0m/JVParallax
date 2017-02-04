@@ -8,27 +8,27 @@
 
 import UIKit
 
-class JVScrollViewParallaxBehavior: NSObject, UIScrollViewDelegate {
+public class JVScrollViewParallaxBehavior: NSObject, UIScrollViewDelegate {
     
-    @IBOutlet var scrollView: UIScrollView?
+    @IBOutlet public var scrollView: UIScrollView?
     
-    @IBOutlet var parallaxViews: [JVParallaxView]?
+    @IBOutlet public var parallaxViews: [JVParallaxView]?
     
-    @IBInspectable var isHorizontal: Bool = true
+    @IBInspectable public var isHorizontal: Bool = true
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let scrollView = self.scrollView else { print("You forgot to set the scrollView to your behavior"); return }
         guard let parallaxViews = self.parallaxViews else { return }
         
         for parallaxView in parallaxViews {
             guard let superView = parallaxView.superview else { return }
             
-            let parallaxViewFramInScrollView = scrollView.convertRect(parallaxView.frame, fromView: superView)
+            let parallaxViewFramInScrollView = scrollView.convert(parallaxView.frame, from: superView)
 
-            let visibleRect = CGRectMake(scrollView.contentOffset.x, scrollView.contentOffset.y, scrollView.frame.width * getWidthMultiplier(scrollView), scrollView.frame.height * getHeightMultiplier(scrollView))
-            let intersectRect = CGRectIntersection(parallaxViewFramInScrollView, visibleRect)
+            let visibleRect = CGRect(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y, width: scrollView.frame.width * getWidthMultiplier(scrollView), height: scrollView.frame.height * getHeightMultiplier(scrollView))
+            let intersectRect = parallaxViewFramInScrollView.intersection(visibleRect)
             
-            guard intersectRect != CGRectNull else { return }
+            guard intersectRect != CGRect.null else { return }
             let sizeValue = isHorizontal ? parallaxViewFramInScrollView.width : parallaxViewFramInScrollView.height
             let originValue = isHorizontal ? parallaxViewFramInScrollView.origin.x : parallaxViewFramInScrollView.origin.y
             
@@ -42,15 +42,15 @@ class JVScrollViewParallaxBehavior: NSObject, UIScrollViewDelegate {
     
     // MARK: - Calculation of size multipliers by taking account insets 
     
-    private func getHeightMultiplier(scrollView : UIScrollView) -> CGFloat {
+    fileprivate func getHeightMultiplier(_ scrollView : UIScrollView) -> CGFloat {
         return getMultiplier(scrollView.contentInset.top, offset: scrollView.contentOffset.y)
     }
     
-    private func getWidthMultiplier(scrollView : UIScrollView) -> CGFloat {
+    fileprivate func getWidthMultiplier(_ scrollView : UIScrollView) -> CGFloat {
         return getMultiplier(scrollView.contentInset.left, offset: scrollView.contentOffset.x)
     }
     
-    private func getMultiplier(inset : CGFloat, offset : CGFloat) -> CGFloat {
+    fileprivate func getMultiplier(_ inset : CGFloat, offset : CGFloat) -> CGFloat {
         guard inset > 0 else { return 1 }
         var multiplier = ((inset + offset))/inset
         multiplier = multiplier > 1 ? 1 : multiplier
