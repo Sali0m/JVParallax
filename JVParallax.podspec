@@ -8,17 +8,18 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JVParallax'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'Parallax any UIView subclasses.'
 
   s.description      = "JVParallax is a simple way of parallaxing any type of View."
 
   s.homepage         = 'https://github.com/Sali0m/JVParallax'
-  # s.screenshots     = 'http://www.saliom.be/githubImg/JVParallax.gif'
+  s.screenshots     = 'http://www.saliom.be/githubImg/JVParallax.gif'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Sali0m' => 'jehan.vossen@gmail.com' }
   s.source           = { :git => 'https://github.com/Sali0m/JVParallax.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/Sali0m
+  s.social_media_url = 'https://twitter.com/Sali0m'
+  s.swift_version    = '4.1'
 
   s.ios.deployment_target = '8.0'
 
